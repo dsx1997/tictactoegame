@@ -28,27 +28,38 @@ function App() {
 }
 
 class Square extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      value2 : null,
-    };
-  }
+  // constructor(props) {
+  //   super(props);
+  //   this.state = {
+  //     value2 : null,
+  //   };
+  // }
   render() {
     return (
       
-      <button className="square" onClick={() => this.setState({value2 : 'X'})}>
-        {/* {this.props.value1} */}
-        {this.state.value2}
+      // <button className="square" onClick={() => this.setState({value2 : 'X'})}>
+      <button className="square" onClick={() => this.props.onClick3()}>
+        {this.props.value1}
+        {/* {this.state.value2} */}
       </button>
     );
   }
 }
 
 class Board extends React.Component {
-
+  constructor(props) {
+    super(props);
+    this.state = {
+      squares : Array(9).fill(null),
+    };
+  }
+  handleClick(i) {
+    const buff = this.state.squares.slice();
+    buff[i] = 'X';
+    this.setState({squares : buff});
+  }
   renderSquare(i) {
-    return <Square value1={i} />;
+    return <Square value1={this.state.squares[i]} onClick3={() => this.handleClick(i)}/>;
   }
 
   render() {
