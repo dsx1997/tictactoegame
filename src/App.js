@@ -28,12 +28,18 @@ function App() {
 }
 
 class Square extends React.Component {
-  
+  constructor(props) {
+    super(props);
+    this.state = {
+      value2 : null,
+    };
+  }
   render() {
     return (
       
-      <button className="square">
-        {this.props.value1}
+      <button className="square" onClick={() => this.setState({value2 : 'X'})}>
+        {/* {this.props.value1} */}
+        {this.state.value2}
       </button>
     );
   }
